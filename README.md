@@ -97,7 +97,7 @@ You may redistribute the unmodified installer. You may not modify and redistribu
 
 ## Contact
 
-Questions, bug reports, or a show you want to try it on: **agaetiss@gmail.com**
+Questions, bug reports, or a show you want to try it on: **ideaamp.support@icloud.com**
 
 ---
 
