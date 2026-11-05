@@ -39,7 +39,7 @@ CueBridge RS 是 SSL Live 控台與 REAPER 之間的橋樑，為現場多軌錄�
 
 1. 開啟 `CueBridge-RS-v0.2.8-Mac.pkg`，依指示安裝
 2. 從「應用程式」開啟 CueBridge RS
-3. 若 macOS 提示「無法驗證開發者」：對 app 按**右鍵 → 打開**，或到「系統設定 → 隱私權與安全性 → 仍要打開」
+3. 若第一次開啟被 macOS 擋下：到「系統設定 → 隱私權與安全性」按「仍要打開」（macOS 15 起右鍵 → 打開已無法略過）
 
 > 簽名與公證完成後，上述第 3 步不再出現。
 
@@ -312,7 +312,7 @@ REAPER 的播放／錄音／循環狀態會回送控台，點亮 DAW 面板上�
 | 開啟時又跳出設定提示條 | 偵測到舊的 OSC pattern 設定 | 關 REAPER → 重按 `Set Up Reaper OSC…` |
 | 畫面上的 `Console` IP 不對 | 網路上有別台送 HUI 的機器 | 只會鎖定第一個來源；確認沒有其他控台／練習程式在送 HUI |
 | 安裝時「不允許安裝在此處」 | macOS 版本低於 13 | 確認系統版本 |
-| App 被 Gatekeeper 擋下 | 未簽名版本 | 右鍵 → 打開，或系統設定允許 |
+| App 被 Gatekeeper 擋下 | 未簽名版本 | 到「系統設定 → 隱私權與安全性」按「仍要打開」 |
 
 **現場除錯工具**：repo 的 `tools/ipmidi-probe.swift` 可抓 ipMIDI／HUI 封包。
 
