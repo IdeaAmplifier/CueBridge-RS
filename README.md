@@ -9,14 +9,14 @@ Every console scene becomes a named marker. The console's own transport drives R
 One network cable, no ipMIDI driver, no counting scenes by hand.</p>
 
 <p align="center">
-  <a href="https://github.com/IdeaAmplifierlifier/CueBridge-RS/releases/latest"><img alt="Download" src="https://img.shields.io/badge/Download-macOS%2013%2B-24BAE0?style=for-the-badge"></a>
+  <a href="https://github.com/IdeaAmplifier/CueBridge-RS/releases/latest"><img alt="Download" src="https://img.shields.io/badge/Download-macOS%2013%2B-24BAE0?style=for-the-badge"></a>
   <img alt="Version" src="https://img.shields.io/badge/version-0.2.8-informational?style=flat-square">
   <img alt="Price" src="https://img.shields.io/badge/free-no_account-brightgreen?style=flat-square">
 </p>
 
 > **For** live sound engineers who record a multitrack from an SSL Live console into REAPER — and want the console's scenes, transport and channel list to line up with the DAW.
 
-**[⬇ Download for macOS](https://github.com/IdeaAmplifierlifier/CueBridge-RS/releases/latest)** · [Manual (PDF)](#documentation) · [中文說明](#中文說明)
+**[⬇ Download for macOS](https://github.com/IdeaAmplifier/CueBridge-RS/releases/latest)** · [Manual (PDF)](#documentation) · [中文說明](#中文說明)
 
 ---
 
@@ -42,7 +42,7 @@ One network cable, no ipMIDI driver, no counting scenes by hand.</p>
 
 ## Install
 
-1. Download the latest `.pkg` from [Releases](https://github.com/IdeaAmplifierlifier/CueBridge-RS/releases/latest).
+1. Download the latest `.pkg` from [Releases](https://github.com/IdeaAmplifier/CueBridge-RS/releases/latest).
 2. Open it and follow the installer.
 3. If macOS says the developer cannot be verified: **right-click the app → Open**, or allow it in **System Settings → Privacy & Security**.
 
