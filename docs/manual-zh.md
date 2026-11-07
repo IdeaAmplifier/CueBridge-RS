@@ -1,9 +1,3 @@
-# CueBridge RS 使用說明書
-
-**Connecting between Reaper and SSL Live** · by ideaAmplifier
-
-版本 **v0.2.8** · macOS 13 以上 · 免費
-
 > 本手冊對應 app 內的英文介面；文中以 `等寬字` 標示畫面上實際出現的按鈕與欄位名稱。
 
 ---
@@ -27,10 +21,10 @@ CueBridge RS 是 SSL Live 控台與 REAPER 之間的橋樑，為現場多軌錄�
 ## 2. 系統需求
 
 - **macOS 13（Ventura）以上** — 已在 13.7.1 實機驗證
-- 通用版：Apple Silicon 與 Intel 皆可（Intel 經 Rosetta 執行）
+- 通用版：Apple Silicon 與 Intel 皆原生執行
 - **REAPER**
 - **SSL Live V5.2 以上**（本工具假設 recorder 的 I/O 是 Console Config 順序的 1:1）
-- 網路：一條網路線，Mac ↔ SSL 的 **Connectivity 埠**；此子網**不可與 Dante 同段**
+- 網路：一條網路線，Mac ↔ SSL 的 **Connectivity 埠**；此子網路**不可與 Dante 同段**
 - 不需要安裝 ipMIDI 驅動
 
 ---
@@ -39,9 +33,6 @@ CueBridge RS 是 SSL Live 控台與 REAPER 之間的橋樑，為現場多軌錄�
 
 1. 開啟 `CueBridge-RS-v0.2.8-Mac.pkg`，依指示安裝
 2. 從「應用程式」開啟 CueBridge RS
-3. 若第一次開啟被 macOS 擋下：到「系統設定 → 隱私權與安全性」按「仍要打開」（macOS 15 起右鍵 → 打開已無法略過）
-
-> 簽名與公證完成後，上述第 3 步不再出現。
 
 ---
 
@@ -50,8 +41,8 @@ CueBridge RS 是 SSL Live 控台與 REAPER 之間的橋樑，為現場多軌錄�
 ### 4.1 SSL 控台端
 
 1. **Options › Network**
-   - Connectivity 埠設在一個**與 Dante 不同**的子網
-   - Mac 接在同一子網
+   - Connectivity 埠設在一個**與 Dante 不同**的子網路
+   - Mac 接在同一子網路
 2. **Options › DAW**
    - **DAW 1 = HUI**，指定一個 ipMIDI 埠（例：**2**）
    - 若要用 User Keys 控制 transport，勾選 **Transport Master**
@@ -86,7 +77,7 @@ CueBridge RS 是 SSL Live 控台與 REAPER 之間的橋樑，為現場多軌錄�
 
 | 欄位 | 設定 |
 |---|---|
-| `SCENES IN` 的 `Source` | `ipMIDI 1 · network`；若走 USB／IAC 實體 MIDI 介面則選該裝置 |
+| `SCENES IN` 的 `Source` | `ipMIDI 1 · network`；若走 USB MIDI 介面或 IAC 則選該裝置 |
 | `SSL DAW CONTROL` 的 `Network` | 接到 SSL 的那張網卡 |
 | `SSL DAW CONTROL` 的 `DAW port` | 與 SSL 的 **DAW 1** 相同的 ipMIDI 埠（例：2） |
 
@@ -120,7 +111,7 @@ SSL：**Console Configuration → Import/Export → Export**，匯出 CSV。
 
 > **警告會自動出現**：
 > - 訊號數 > 64 → 一條 MADI recorder 在 48k 只有 64 聲道，第 65 個訊號以後要檢查 I/O
-> - 同時 patch outputs 又送 master → 若 master 走 outputs 1/2，播放時整盤混音會灌進第一軌的錄音回送
+> - 同時 patch outputs 又送 master → 若 master 走 outputs 1/2，播放時整盤混音會灌進第一個 channel 的播放回送
 
 ### 5.4 右欄軌道表
 
@@ -133,7 +124,7 @@ SSL：**Console Configuration → Import/Export → Export**，匯出 CSV。
 | `IN` | 對應的錄音輸入編號 |
 | `OUT` | 對應的硬體輸出（未 patch 時顯示 `—`） |
 
-- 表頭右側顯示 `已勾選 / 總數 channels → N tracks`
+- 表頭中央顯示 `已勾選 / 總數 channels → N tracks`
 - 上方按鈕：`All`／`None`／`Link All Stereo`／`Split All`
 - **一行 CSV = 一個 recorder 訊號**；stereo 在 CSV 裡本來就佔兩行
 - **I/O 跟著 recorder 訊號位置走**：取消勾選某條軌道，它後面的軌道編號不會往前遞補
@@ -163,12 +154,12 @@ SSL：**Console Configuration → Import/Export → Export**，匯出 CSV。
 
 | 狀態 | 意思 |
 |---|---|
-| `Not set up` | 還沒做 4.2 的 OSC 設定 |
+| `Not set up` | 還沒做 §4.2 的 OSC 設定 |
 | `No response` | 已設定，但 8 秒內沒收到 REAPER 回覆 → 按 `Retry`，或確認 REAPER 是否開著 |
-| `Port in use` | 49121 被佔用（常見：另一個 CueBridge 或 OSC 工具也在跑） |
-| `Connected · Stopped` / `Connected · Playing` / `Recording` | 正常 |
+| `Port in use` | 49122 被佔用（常見：另一個 CueBridge 或 OSC 工具也在跑） |
+| `Connected · Stopped`／`Connected · Playing`／`Recording` | 正常 |
 
-- `Mark only while recording`（**預設開**）：只在 REAPER 錄音中打點。關閉後，scene 觸發就打點
+- `Mark only while recording`（**預設開**）：只在 REAPER 錄音中打點。關閉後，錄音中或播放中都會打點
 
 **SCENES IN**
 
@@ -198,11 +189,11 @@ SSL：**Console Configuration → Import/Export → Export**，匯出 CSV。
 | `MIDI IN` | 觸發條件。點它開啟編輯框，或用 `LEARN` 抓下一則 MIDI |
 | `MARKER NAME` | 寫進 REAPER 的 marker 名稱 |
 
-**MIDI IN 寫法**
+**MIDI IN 的檔案寫法（.txt／.csv）**
 
 | 寫法 | 意思 |
 |---|---|
-| `21` | Ch 1 的 Program Change 21（SSL 畫面上的 program number，1–128） |
+| `21` | channel 1 的 Program Change 21（SSL 畫面上的 program number，1–128） |
 | `21@5` | PC 21，channel 5 |
 | `21@any` | PC 21，任何 channel |
 | `CC:20=127@1` | CC 20 = 127，channel 1 |
@@ -222,11 +213,11 @@ SSL：**Console Configuration → Import/Export → Export**，匯出 CSV。
 
 **規則**
 
-- **只有清單裡、且啟用的列會打點**；其他一律只記 Log
+- **只有清單裡、且啟用的列會打點**；其他都不打點
 - 停用的列收到訊息 → Log 顯示 `Skipped · scene disabled`
 - 清單外的 PC → Log 顯示 `Skipped · not in scene list`
 - 清單外的 Note／CC → 不記
-- 同一個 MIDI In 重複出現在多列 → 表頭出現 ⚠，**只採用第一個啟用的列**
+- 同一個 `MIDI IN` 重複出現在多列 → 清單下方出現 ⚠，**只採用第一個啟用的列**
 - SSL 的 **All Channels** 會把同一則訊息送到 16 個 channel（現場副本間隔約 70–130 ms）：0.5 秒內、尚未出現過的 channel 視為副本，只算一次；同一個 channel 再次出現 = 真的又觸發了一次
 
 **存檔**
@@ -242,8 +233,8 @@ SSL：**Console Configuration → Import/Export → Export**，匯出 CSV。
 3. 等 REAPER 回報 `/lastmarker/number/str` 改變
 4. 用 `/lastmarker/name` 把新 marker 改成清單上的名字
 
-- **2 秒內沒收到確認 → 不改名**（避免改到別的 marker）；Log 顯示 `no reply from Reaper`。此 2 秒是改名確認逾時，與 §6.1 的 8 秒連線存活心跳是不同機制
-- 左欄 `Log` 依序列出時間、觸發、名稱、狀態；`Clear` 清除、`Export` 匯出 CSV
+- **2 秒內沒收到確認 → 不改名**（避免改到別的 marker）；Log 顯示 `no reply from Reaper, not named`。此 2 秒是改名確認逾時，與 §6.1 的 8 秒連線存活心跳是不同機制
+- 左欄 `LOG` 依序列出時間、觸發、名稱、狀態；`Clear` 清除、`Export` 匯出 CSV
 
 ### 6.4 SSL DAW CONTROL 對照
 
@@ -261,7 +252,9 @@ SSL：**Console Configuration → Import/Export → Export**，匯出 CSV。
 
 - 錄音中 → `Rec` 忽略
 - 錄音中 → `Play`、`Loop`、`Rtz`、marker 跳轉忽略
-- `Stop` 一定有效
+- 播放中 → `Play` 忽略
+- 已停止 → `Stop` 忽略
+- 播放或錄音中 → `Stop` 一定有效
 
 **Prev／Next** 是 SSL 自己計數，經 HUI 數字鍵（`. N .`）送出 → REAPER `/marker N`。
 
@@ -273,9 +266,9 @@ REAPER 的播放／錄音／循環狀態會回送控台，點亮 DAW 面板上�
 
 **進場**
 
-- [ ] Mac 用**有線網路**接到 SSL Connectivity 埠（ipMIDI 走 Wi-Fi 會掉包，觀眾進場後更嚴重）
+- [ ] Mac 用**有線網路**接到 SSL Connectivity 埠（ipMIDI 走 Wi-Fi 會掉封包，觀眾進場後更嚴重）
 - [ ] SSL 的 DAW popout 顯示的是 **DAW 1**
-- [ ] CueBridge：`SSL DAW CONTROL` 選對網卡與 DAW 埠，狀態 `Online`
+- [ ] CueBridge：`SSL DAW CONTROL` 選對網卡與 `DAW port`，狀態 `Online`
 - [ ] `SCENES IN` 狀態 `Listening`（按一個 scene 測試是否 `Receiving`）
 - [ ] 換過場地 → 按 `Re-detect`
 
@@ -288,7 +281,7 @@ REAPER 的播放／錄音／循環狀態會回送控台，點亮 DAW 面板上�
 
 **演出中**
 
-- [ ] `Log` 頁開著；出現 `Skipped · not in scene list` 表示清單漏了 scene
+- [ ] **AUTO-MARKING** 頁的 `LOG` 開著；出現 `Skipped · not in scene list` 表示清單漏了 scene
 - [ ] 若出現 `no reply from Reaper`，先確認 REAPER 沒有跳出對話框
 
 **收工**
@@ -301,18 +294,17 @@ REAPER 的播放／錄音／循環狀態會回送控台，點亮 DAW 面板上�
 
 | 症狀 | 可能原因 | 處理 |
 |---|---|---|
-| REAPER 一直 `No response` | REAPER 沒開、或 OSC surface 被刪、或 49121 被佔用 | 確認 REAPER 開著；重跑 `Set Up Reaper OSC…`；檢查是否有另一個 OSC 工具 |
-| `Port in use` | 另一個 CueBridge 實例或 OSC 程式佔用 49121 | 關掉重複的程式 |
-| `Waiting for console` 一直不變 | 網卡選錯、DAW 埠與 SSL 的 DAW 1 不一致、網路不在同一子網 | 核對 4.1／4.3；換網卡後按 `Re-detect` |
+| REAPER 一直 `No response` | REAPER 沒開、或 OSC surface 被刪、或 49121 被佔用 | 確認 REAPER 開著並按 `Retry`；surface 被刪時先關 REAPER、重開 CueBridge RS，再按 `Set Up Reaper OSC…`；檢查是否有另一個 OSC 工具 |
+| `Port in use` | 另一個 CueBridge 或 OSC 程式佔用 49122 | 關掉重複的程式 |
+| `Waiting for console` 一直不變 | 網卡選錯、`DAW port` 與 SSL 的 DAW 1 不一致、網路不在同一子網路 | 核對 §4.1／§4.3；畫面上還是舊的 `Console` IP 時按 `Re-detect` |
 | DAW popout 全灰 | 控台正在看 DAW 2（沒設埠） | 長按 DAW popout 切回 DAW 1 |
-| Scene 有觸發但沒打點 | 清單外的 scene、列被停用、或 `Mark only while recording` 開著但沒在錄音 | 看 `Log` 的 `Skipped · …` 原因 |
+| Scene 有觸發但沒打點 | 清單外的 scene、列被停用、`Mark only while recording` 開著但沒在錄音、或 REAPER 處於停止 | 看 `LOG` 的 `Skipped · …` 原因（清單外的 Note／CC 不記） |
 | 同一 scene 打了 16 個點 | 舊版（< 0.2.2）行為；現版已依 channel 去重 | 若仍發生，確認安裝版本 ≥ 0.2.2 |
-| 90 軌全 armed 時漏打點 | REAPER 負載太高 | 確認已用精簡 pattern（重跑設定）；刪掉沒用的 OSC surface |
-| 換場地後完全沒反應 | console IP 被鎖在上一台 | 按 `Re-detect` |
-| 開啟時又跳出設定提示條 | 偵測到舊的 OSC pattern 設定 | 關 REAPER → 重按 `Set Up Reaper OSC…` |
+| 90 軌全 armed 時漏打點 | REAPER 負載太高 | 有設定提示條就關 REAPER、重按 `Set Up Reaper OSC…`；刪掉沒用的 OSC surface |
+| 換場地後完全沒反應 | 控台 IP 被鎖在上一台 | 按 `Re-detect` |
+| 開啟時又跳出設定提示條 | OSC 設定缺漏或是舊版 | 關 REAPER → 重按 `Set Up Reaper OSC…` |
 | 畫面上的 `Console` IP 不對 | 網路上有別台送 HUI 的機器 | 只會鎖定第一個來源；確認沒有其他控台／練習程式在送 HUI |
 | 安裝時「不允許安裝在此處」 | macOS 版本低於 13 | 確認系統版本 |
-| App 被 Gatekeeper 擋下 | 未簽名版本 | 到「系統設定 → 隱私權與安全性」按「仍要打開」 |
 
 **現場除錯工具**：repo 的 `tools/ipmidi-probe.swift` 可抓 ipMIDI／HUI 封包。
 
@@ -324,7 +316,7 @@ REAPER 的播放／錄音／循環狀態會回送控台，點亮 DAW 面板上�
 |---|---|
 | OSC pattern | `~/Library/Application Support/REAPER/OSC/CueBridge.ReaperOSC` |
 | reaper.ini 備份 | `~/Library/Application Support/REAPER/reaper.ini.before-CueBridgeRS.bak` ＋ 時間戳備份 |
-| Scene 清單 | 每個 session 資料夾內的 `ssl_scene_names.txt` |
+| Scene 清單 | 每個 session 資料夾內的 `ssl_scene_names.txt`；沒有 session 時在 `~/Library/Application Support/CueBridge RS/` |
 | Log 匯出 | `Export` 時自選位置 |
 
 > `reaper.ini` 只支援 REAPER 的標準安裝位置；portable install 未支援。
@@ -344,9 +336,6 @@ REAPER 的播放／錄音／循環狀態會回送控台，點亮 DAW 面板上�
 
 ## 11. 授權與致謝
 
-- 本軟體**免費**提供，按現狀提供（as is），不附任何擔保
+{{legal}}
 - 字型：Inter 4.1 © The Inter Project Authors，SIL Open Font License 1.1（授權檔隨 app 附上）
-
----
-
-*CueBridge RS v0.2.8 · 2026-11 · by ideaAmplifier*
+{{series}}
